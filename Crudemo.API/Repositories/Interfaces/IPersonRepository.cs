@@ -12,5 +12,6 @@ namespace Crudemo.API.Repositories.Interfaces
         Person Get(int id);
         void Update(Person model);
         void Delete(int id);
+        int Insert(Person model);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Crudemo.API.Models;
+using Crudemo.API.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,33 +14,45 @@ namespace Crudemo.API.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
+        private readonly IPersonRepository _personRepository;
+
+        public PersonController(IPersonRepository personRepository)
+        {
+            _personRepository = personRepository;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
+            IEnumerable<Person> models = _personRepository.Get();
             return NoContent();
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
+            Person model = _personRepository.Get(id);
             return NoContent();
         }
 
         [HttpPost]
         public IActionResult Post([FromBody] Person model)
         {
-            return CreatedAtAction(nameof(Get), new { id = model.Id }, model);
+            int insertedId = _personRepository.Insert(model);
+            return CreatedAtAction(nameof(Get), new { id = insertedId }, model);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Person model)
         {
+            _personRepository.Update(model);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            _personRepository.Delete(id);
             return NoContent();
         }
     }

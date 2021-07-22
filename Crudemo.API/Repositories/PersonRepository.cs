@@ -24,6 +24,11 @@ namespace Crudemo.API.Repositories
             throw new NotImplementedException();
         }
 
+        public int Insert(Person model)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Person model)
         {
             throw new NotImplementedException();
