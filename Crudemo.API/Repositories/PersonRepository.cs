@@ -1,7 +1,9 @@
-﻿using Crudemo.API.Models;
+﻿using Crudemo.API.Models.Person;
 using Crudemo.API.Repositories.Interfaces;
+using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,7 +23,14 @@ namespace Crudemo.API.Repositories
 
         public Person Get(int id)
         {
-            throw new NotImplementedException();
+            using System.Data.IDbConnection connection = new SqlConnection("Server=(localdb)\\MSSQLLocalDB;Database=Crudemo;Trusted_Connection=True;");
+            Person model = connection.QueryFirstOrDefault<Person>(
+                    "SELECT Id, FirstName, LastName, PhoneNumber, ConcurrencyToken, DateAdded " +
+                    "FROM Persons " +
+                    "WHERE Id = @Id",
+                    new { id }
+                );
+            return model;
         }
 
         public int Insert(Person model)

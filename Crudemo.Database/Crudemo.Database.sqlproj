@@ -61,4 +61,7 @@
   <ItemGroup>
     <Build Include="Tables\Persons.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Crudemo.Database.publish.xml" />
+  </ItemGroup>
 </Project>

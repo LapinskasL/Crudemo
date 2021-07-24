@@ -1,4 +1,4 @@
-﻿using Crudemo.API.Models;
+﻿using Crudemo.API.Models.Person;
 using System;
 using System.Collections.Generic;
 using System.Linq;

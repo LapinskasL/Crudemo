@@ -1,4 +1,4 @@
-﻿using Crudemo.API.Models;
+﻿using Crudemo.API.Models.Person;
 using Crudemo.API.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -32,7 +32,7 @@ namespace Crudemo.API.Controllers
         public IActionResult Get(int id)
         {
             Person model = _personRepository.Get(id);
-            return NoContent();
+            return Ok(model);
         }
 
         [HttpPost]

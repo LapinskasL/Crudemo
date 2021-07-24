@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Crudemo.API.Models
+namespace Crudemo.API.Models.Person
 {
     public class Person
     {
