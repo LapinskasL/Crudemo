@@ -57,9 +57,11 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Persons.sql" />
+    <Build Include="Stored Procedures\PersonsInsertPerson.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Crudemo.Database.publish.xml" />

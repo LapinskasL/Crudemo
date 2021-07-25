@@ -10,6 +10,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,6 +30,9 @@ namespace Crudemo.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddTransient<IDbConnection>(db => new SqlConnection(
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IPersonRepository, PersonRepository>();
         }
