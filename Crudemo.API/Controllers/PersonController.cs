@@ -70,6 +70,7 @@ namespace Crudemo.API.Controllers
             {
                 return NotFound();
             }
+ 
             _personRepository.Delete(id);
             return NoContent();
         }

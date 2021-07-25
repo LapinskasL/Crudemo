@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crudemo.UserInterface", "Crudemo.UserInterface\Crudemo.UserInterface.csproj", "{F800DF83-C30C-48E6-B1F6-38DA7BE1B728}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crudemo.WebUI", "Crudemo.UserInterface\Crudemo.WebUI.csproj", "{F800DF83-C30C-48E6-B1F6-38DA7BE1B728}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Crudemo.Database", "Crudemo.Database\Crudemo.Database.sqlproj", "{D929073F-6761-4293-B855-43BE38AD1AF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crudemo.API", "Crudemo.API\Crudemo.API.csproj", "{2CD7B4CB-573C-46B6-8CF1-F0738AF69BC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crudemo.API", "Crudemo.API\Crudemo.API.csproj", "{2CD7B4CB-573C-46B6-8CF1-F0738AF69BC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
