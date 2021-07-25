@@ -38,7 +38,6 @@ namespace Crudemo.API.Controllers
                 return NotFound();
             }
             //TODO add dto mapping
-            //TODO add person not found error
             return Ok(model);
         }
 
@@ -46,8 +45,9 @@ namespace Crudemo.API.Controllers
         public IActionResult Post([FromBody] Person model)
         {
             int insertedId = _personRepository.Insert(model);
-            //TODO query by id and add dto mapping
-            return CreatedAtAction(nameof(Get), new { id = insertedId }, model);
+            Person insertedPerson = _personRepository.Get(insertedId);
+            //TODO add dto mapping
+            return CreatedAtAction(nameof(Get), new { id = insertedId }, insertedPerson);
         }
 
         [HttpPut("{id}")]
@@ -58,7 +58,6 @@ namespace Crudemo.API.Controllers
             {
                 return NotFound();
             }
-            //TODO add person not found error
             _personRepository.Update(model);
             return Ok();//TODO return model
         }
@@ -71,7 +70,6 @@ namespace Crudemo.API.Controllers
             {
                 return NotFound();
             }
-            //TODO add person not found error
             _personRepository.Delete(id);
             return NoContent();
         }
