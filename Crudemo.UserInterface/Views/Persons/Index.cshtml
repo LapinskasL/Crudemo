@@ -1,8 +1,19 @@
-﻿<h1>People</h1>
+﻿@section Scripts {
+    <script src="~/js/personsEditor.js"></script>
+    <script>
+        $(document).ready(function () {
+            InitializePersonsDataTable();
+        });
+    </script>
+
+}
+
+<h1>People</h1>
 <table id="personsTable">
     <thead>
         <tr>
-            <td>Name</td>
+            <td>First Name</td>
+            <td>Last Name</td>
             <td>Phone Number</td>
             <td>Date Added</td>
         </tr>
