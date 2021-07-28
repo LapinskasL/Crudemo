@@ -40,14 +40,16 @@ namespace Crudemo.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult GetUpsertPersonFormPartial(int? personId)
+        public PartialViewResult GetUpsertPersonFormPartial(PersonModel model = null)
         {
-            if (personId == null)
+            //instead of requerying the person, we bind the whole model so
+            //the object's update form's values reflect those in the table
+            if (model == null)
             {
                 return PartialView("_UpsertPersonFormPartial");
             }
-            //TODO get person by Id
-            return PartialView("_UpsertPersonFormPartial", GeneratePersons().First());
+
+            return PartialView("_UpsertPersonFormPartial", model);
         }
 
         [HttpPost]
@@ -59,7 +61,7 @@ namespace Crudemo.WebUI.Controllers
                 return Json(new { });
             }
 
-            //TODO insert person and return
+            //TODO update person and return
             return Json(new { });
         }
     }

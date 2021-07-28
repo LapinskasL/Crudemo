@@ -1,7 +1,17 @@
 ﻿@model PersonModel
-<form>
+<script>
+    $(document).ready(function () {
+        $('#upsertForm').submit(function (e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+             
+        });
+    });
+</script>
+
+<form id="upsertForm">
     <input hidden asp-for="Id" />
     <input hidden asp-for="ConcurrencyToken" />
+    <input hidden asp-for="DateAdded" />
     <div class="form-group">
         <label asp-for="LastName"></label>
         <input asp-for="LastName" class="form-control">
