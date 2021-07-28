@@ -8,18 +8,28 @@
             { data: "lastName" },
             { data: "firstName" },
             { data: "phoneNumber" },
-            { data: "dateAdded"}
+            { data: "dateAdded" }
         ]
     });
     return table;
 }
 
-var tempHtmlForm = '<form> <div class="form-group"> <label for="formGroupExampleInput">Example label</label> <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input"> </div> <div class="form-group"> <label for="formGroupExampleInput2">Another label</label> <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input"> </div> </form>';
-function OpenCreateModal() {
+function AjaxGetUpsertPersonFormPartial(personId = null) {
+    var ajaxCall = $.ajax({
+        type: "GET",
+        url: "/persons/GetUpsertPersonFormPartial",
+        data: {
+            personId: personId
+        }
+    });
+    return ajaxCall;
+}
+
+function CreateModal(formHtml) {
     bootbox.dialog({
-        title: 'Create User',
+        title: 'Person',
         size: 'small',
-        message: tempHtmlForm,
+        message: formHtml,
         buttons: {
             submit: {
                 label: 'Submit',
@@ -29,5 +39,12 @@ function OpenCreateModal() {
                 }
             }
         }
-    })
+    });
+}
+
+function OpenCreateModal() {
+    AjaxGetUpsertPersonFormPartial()
+        .done(function (partialView) {
+            CreateModal(partialView);
+        });
 }

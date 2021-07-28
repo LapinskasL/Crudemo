@@ -1,6 +1,6 @@
 using System;
 
-namespace Crudemo.UserInterface.Models
+namespace Crudemo.WebUI.Models
 {
     public class ErrorViewModel
     {

@@ -1,4 +1,4 @@
-﻿using Crudemo.UserInterface.Models;
+﻿using Crudemo.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Crudemo.UserInterface.Controllers
+namespace Crudemo.WebUI.Controllers
 {
     public class HomeController : Controller
     {

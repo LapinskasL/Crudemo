@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Crudemo.UserInterface
+namespace Crudemo.WebUI
 {
     public class Startup
     {
@@ -50,7 +50,7 @@ namespace Crudemo.UserInterface
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Persons}/{action=Index}/{id?}");
             });
         }
     }
