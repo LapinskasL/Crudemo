@@ -9,6 +9,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Crudemo.Database", "Crudemo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crudemo.API", "Crudemo.API\Crudemo.API.csproj", "{2CD7B4CB-573C-46B6-8CF1-F0738AF69BC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crudemo.DataAccess", "Crudemo.DataAccess\Crudemo.DataAccess.csproj", "{61228DFF-34E7-43BE-9602-ABD896357678}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{2CD7B4CB-573C-46B6-8CF1-F0738AF69BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CD7B4CB-573C-46B6-8CF1-F0738AF69BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CD7B4CB-573C-46B6-8CF1-F0738AF69BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61228DFF-34E7-43BE-9602-ABD896357678}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61228DFF-34E7-43BE-9602-ABD896357678}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61228DFF-34E7-43BE-9602-ABD896357678}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61228DFF-34E7-43BE-9602-ABD896357678}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
