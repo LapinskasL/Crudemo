@@ -50,6 +50,7 @@ function CreateModal(formHtml) {
                     AjaxUpsertPerson()
                         .done(function (response) {
                             toastr.success("Person created.");
+                            ReloadPersonsTable();
                         });
                 }
             }
@@ -64,12 +65,32 @@ function OpenCreateModal() {
         });
 }
 
+function AjaxDeletePerson() {
+    var ajaxCall = $.ajax({
+        type: "POST",
+        url: "/persons/deletePerson",
+        data: $('#upsertForm').serialize()
+    });
+    return ajaxCall;
+}
+
 function UpdateModal(formHtml) {
     bootbox.dialog({
         title: 'Person',
         size: 'small',
         message: formHtml,
         buttons: {
+            delete: {
+                label: 'Delete',
+                className: 'btn-danger',
+                callback: function () {
+                    AjaxDeletePerson()
+                        .done(function (response) {
+                            toastr.success("Person deleted.");
+                            ReloadPersonsTable();
+                        });
+                }
+            },
             submit: {
                 label: 'Update',
                 className: 'btn-primary',
@@ -77,11 +98,16 @@ function UpdateModal(formHtml) {
                     AjaxUpsertPerson()
                         .done(function (response) {
                             toastr.success("Person updated.");
+                            ReloadPersonsTable();
                         });
                 }
             }
         }
     });
+}
+
+function ReloadPersonsTable() {
+    $('#personsTable').ajax.reload(null, false);
 }
 
 function OpenUpdateModal(person) {

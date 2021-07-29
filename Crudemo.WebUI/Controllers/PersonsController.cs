@@ -57,11 +57,18 @@ namespace Crudemo.WebUI.Controllers
         {
             if (model.Id == 0)
             {
-                //TODO insert person and return
+                //TODO insert person
                 return Json(new { });
             }
 
-            //TODO update person and return
+            //TODO update person
+            return Json(new { });
+        }
+
+        [HttpPost]
+        public JsonResult DeletePerson(PersonModel model)
+        {
+            //TODO delete person
             return Json(new { });
         }
     }
