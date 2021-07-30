@@ -1,3 +1,7 @@
+using Crudemo.Business;
+using Crudemo.Business.Interfaces;
+using Crudemo.DataAccess;
+using Crudemo.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +28,12 @@ namespace Crudemo.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //repositories
+            services.AddScoped<IPersonRepository, PersonRepository>();
+
+            //services
+            services.AddScoped<IPersonService, PersonService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
