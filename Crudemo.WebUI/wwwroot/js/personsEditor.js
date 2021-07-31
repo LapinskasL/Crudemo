@@ -107,7 +107,7 @@ function UpdateModal(formHtml) {
 }
 
 function ReloadPersonsTable() {
-    $('#personsTable').ajax.reload(null, false);
+    $('#personsTable').DataTable().ajax.reload(null, false);
 }
 
 function OpenUpdateModal(person) {

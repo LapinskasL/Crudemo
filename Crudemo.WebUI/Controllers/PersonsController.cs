@@ -1,4 +1,7 @@
-﻿using Crudemo.Business.Interfaces;
+﻿using AutoMapper;
+using Crudemo.Business.Interfaces;
+using Crudemo.Business.Responses;
+using Crudemo.Models;
 using Crudemo.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,15 +14,16 @@ namespace Crudemo.WebUI.Controllers
     public class PersonsController : Controller
     {
         private readonly IPersonService _personService;
+        private readonly IMapper _mapper;
 
-        public PersonsController(IPersonService personService)
+        public PersonsController(IPersonService personService, IMapper mapper)
         {
             _personService = personService;
+            _mapper = mapper;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            await _personService.Get();
             return View();
         }
 
@@ -30,36 +34,41 @@ namespace Crudemo.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult GetUpsertPersonFormPartial(PersonModel model = null)
+        public PartialViewResult GetUpsertPersonFormPartial(PersonModel viewModel = null)
         {
             //instead of requerying the person, we bind the whole model so
             //the object's update form's values reflect those in the table
-            if (model == null)
+            if (viewModel == null)
             {
                 return PartialView("_UpsertPersonFormPartial");
             }
 
-            return PartialView("_UpsertPersonFormPartial", model);
+            return PartialView("_UpsertPersonFormPartial", viewModel);
         }
 
         [HttpPost]
-        public JsonResult UpsertPerson(PersonModel model)
+        public async Task<JsonResult> UpsertPerson(PersonModel viewModel)
         {
-            if (model.Id == 0)
+            Person model = _mapper.Map<Person>(viewModel);
+
+            PersonResponse response;
+            if (viewModel.Id == 0)
             {
-                //TODO insert person
-                return Json(new { });
+                response = await _personService.Insert(model);
+            }
+            else
+            {
+                response = await _personService.Update(model);
             }
 
-            //TODO update person
-            return Json(new { });
+            return Json(response);
         }
 
         [HttpPost]
-        public JsonResult DeletePerson(PersonModel model)
+        public async Task<JsonResult> DeletePerson(PersonModel viewModel)
         {
-            //TODO delete person
-            return Json(new { });
+            PersonResponse response = await _personService.Delete(viewModel.Id);
+            return Json(response);
         }
     }
 }
