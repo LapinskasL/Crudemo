@@ -53,6 +53,11 @@ namespace Crudemo.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Person model)
         {
+            if (id != model.Id)
+            {
+                return BadRequest();
+            }
+
             Person person = _personRepository.Get(id);
             if (person == null)
             {
