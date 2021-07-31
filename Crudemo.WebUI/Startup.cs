@@ -32,7 +32,8 @@ namespace Crudemo.WebUI
 
             services.AddHttpClient("Crudemo", c =>
             {
-                c.BaseAddress = new Uri("https://localhost:44313/api");
+                string baseAddress = Configuration.GetValue<string>("API:BaseAddress");
+                c.BaseAddress = new Uri(baseAddress);
             }) 
             //Info on generated clients with Refit: https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-3.1#generated-clients-1
             .AddTypedClient(c => Refit.RestService.For<ICrudemoApi>(c));
