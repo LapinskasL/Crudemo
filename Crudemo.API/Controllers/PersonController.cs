@@ -25,7 +25,7 @@ namespace Crudemo.API.Controllers
         public IActionResult Get()
         {
             IEnumerable<Person> models = _personRepository.Get();
-            //TODO add dto mapping
+
             return Ok(models);
         }
 
@@ -37,7 +37,7 @@ namespace Crudemo.API.Controllers
             {
                 return NotFound();
             }
-            //TODO add dto mapping
+
             return Ok(model);
         }
 
@@ -46,7 +46,7 @@ namespace Crudemo.API.Controllers
         {
             int insertedId = _personRepository.Insert(model);
             Person insertedPerson = _personRepository.Get(insertedId);
-            //TODO add dto mapping
+
             return CreatedAtAction(nameof(Get), new { id = insertedId }, insertedPerson);
         }
 
@@ -59,7 +59,7 @@ namespace Crudemo.API.Controllers
                 return NotFound();
             }
             _personRepository.Update(model);
-            return Ok();//TODO return model
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
