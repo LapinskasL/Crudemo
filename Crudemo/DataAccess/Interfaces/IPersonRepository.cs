@@ -22,7 +22,7 @@ namespace Crudemo.DataAccess.Interfaces
         /// <summary>
         /// Updates object.
         /// </summary>
-        public Task<Person> Update(Person model);
+        public Task Update(Person model);
 
         /// <summary>
         /// Inserts object.

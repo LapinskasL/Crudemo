@@ -41,10 +41,9 @@ namespace Crudemo.DataAccess
             return insertedModel;
         }
 
-        public async Task<Person> Update(Person model)
+        public async Task Update(Person model)
         {
-            Person updatedModel = await _crudemoApi.Update(model);
-            return updatedModel;
+            await _crudemoApi.Update(model);
         }
     }
 }

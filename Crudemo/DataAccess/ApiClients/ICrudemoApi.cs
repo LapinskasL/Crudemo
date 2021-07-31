@@ -24,7 +24,7 @@ namespace Crudemo.DataAccess.ApiClients
         /// <summary>
         /// Updates object.
         /// </summary>
-        [Put("/person")]
+        [Put("/person/{model.Id}")]
         Task<Person> Update(Person model);
 
         /// <summary>

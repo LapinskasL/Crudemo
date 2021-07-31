@@ -52,11 +52,11 @@ namespace Crudemo.Business
 
         public async Task<PersonResponse> Update(Person model)
         {
-            Person updatedModel = await _personRepository.Update(model);
+            await _personRepository.Update(model);
             return new PersonResponse
             {
                 IsSuccessful = true,
-                Person = updatedModel
+                Person = await _personRepository.Get(model.Id)
             };
         }
     }
