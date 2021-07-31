@@ -12,20 +12,20 @@ namespace Crudemo.Business
 {
     public class PersonService : IPersonService
     {
-        private readonly IPersonRepository _personRepository = 
-            RestService.For<IPersonRepository>("https://localhost:44313/api");
-        public PersonService()
+        private readonly IPersonRepository _personRepository;
+
+        public PersonService(IPersonRepository personRepository)
         {
-                
-        }
-        public PersonResponse Delete(int id, string concurrencyToken)
-        {
-            throw new NotImplementedException();
+            _personRepository = personRepository;
         }
 
-        public PersonResponse Delete(Person model)
+        public async Task<PersonResponse> Delete(int id)
         {
-            throw new NotImplementedException();
+            await _personRepository.Delete(id);
+            return new PersonResponse
+            {
+                IsSuccessful = true
+            };
         }
 
         public async Task<IEnumerable<Person>> Get()
@@ -34,19 +34,30 @@ namespace Crudemo.Business
             return models;
         }
 
-        public Person Get(int id)
+        public async Task<Person> Get(int id)
         {
-            throw new NotImplementedException();
+            Person model = await _personRepository.Get(id);
+            return model;
         }
 
-        public PersonResponse Insert(Person model)
+        public async Task<PersonResponse> Insert(Person model)
         {
-            throw new NotImplementedException();
+            Person insertedModel = await _personRepository.Insert(model);
+            return new PersonResponse
+            {
+                IsSuccessful = true,
+                Person = insertedModel
+            };
         }
 
-        public PersonResponse Update(Person model)
+        public async Task<PersonResponse> Update(Person model)
         {
-            throw new NotImplementedException();
+            Person updatedModel = await _personRepository.Update(model);
+            return new PersonResponse
+            {
+                IsSuccessful = true,
+                Person = updatedModel
+            };
         }
     }
 }

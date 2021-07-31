@@ -1,5 +1,7 @@
-﻿using Crudemo.DataAccess.Interfaces;
+﻿using Crudemo.DataAccess.ApiClients;
+using Crudemo.DataAccess.Interfaces;
 using Crudemo.Models;
+using Refit;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,36 +9,38 @@ using System.Threading.Tasks;
 
 namespace Crudemo.DataAccess
 {
-    public class PersonRepository// : IPersonRepository
+    public class PersonRepository : IPersonRepository
     {
-        //public void Delete(int id, string concurrencyToken)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private readonly ICrudemoApi _crudemoApi =
+            RestService.For<ICrudemoApi>("https://localhost:44313/api");
 
-        //public void Delete(Person model)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task Delete(int id)
+        {
+            await _crudemoApi.Delete(id);
+        }
 
-        //public IEnumerable<Person> Get()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<IEnumerable<Person>> Get()
+        {
+            IEnumerable<Person> models = await _crudemoApi.Get();
+            return models;
+        }
 
-        //public Person Get(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<Person> Get(int id)
+        {
+            Person model = await _crudemoApi.Get(id);
+            return model;
+        }
 
-        //public int Insert(Person model)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<Person> Insert(Person model)
+        {
+            Person insertedModel = await _crudemoApi.Insert(model);
+            return insertedModel;
+        }
 
-        //public void Update(Person model)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<Person> Update(Person model)
+        {
+            Person updatedModel = await _crudemoApi.Update(model);
+            return updatedModel;
+        }
     }
 }

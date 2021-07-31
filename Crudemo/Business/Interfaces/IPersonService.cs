@@ -17,30 +17,24 @@ namespace Crudemo.Business.Interfaces
         /// <summary>
         /// Returns one object by Id.
         /// </summary>
-        public Person Get(int id);
+        public Task<Person> Get(int id);
 
         /// <summary>
         /// Updates object.
         /// </summary>
         /// <returns>PersonResponse containing updated object.</returns>
-        public PersonResponse Update(Person model);
+        public Task<PersonResponse> Update(Person model);
 
         /// <summary>
         /// Inserts obejct.
         /// </summary>
         /// <returns>PersonResponse containing inserted object.</returns>
-        public PersonResponse Insert(Person model);
+        public Task<PersonResponse> Insert(Person model);
 
         /// <summary>
-        /// Deletes object by Id and ConcurrencyToken.
+        /// Deletes object by Id.
         /// </summary>
         /// <returns>PersonResponse object.</returns>
-        public PersonResponse Delete(int id, string concurrencyToken);
-
-        /// <summary>
-        /// Deletes object.
-        /// </summary>
-        /// <param name="model">Person object with Id and ConcurrencyToken values.</param>
-        public PersonResponse Delete(Person model);
+        public Task<PersonResponse> Delete(int id);
     }
 }
