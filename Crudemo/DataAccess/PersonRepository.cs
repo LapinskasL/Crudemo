@@ -11,8 +11,12 @@ namespace Crudemo.DataAccess
 {
     public class PersonRepository : IPersonRepository
     {
-        private readonly ICrudemoApi _crudemoApi =
-            RestService.For<ICrudemoApi>("https://localhost:44313/api");
+        private readonly ICrudemoApi _crudemoApi;
+
+        public PersonRepository(ICrudemoApi crudemoApi)
+        {
+            _crudemoApi = crudemoApi;
+        }
 
         public async Task Delete(int id)
         {

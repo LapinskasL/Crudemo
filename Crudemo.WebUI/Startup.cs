@@ -1,6 +1,7 @@
 using Crudemo.Business;
 using Crudemo.Business.Interfaces;
 using Crudemo.DataAccess;
+using Crudemo.DataAccess.ApiClients;
 using Crudemo.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,13 @@ namespace Crudemo.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddHttpClient("Crudemo", c =>
+            {
+                c.BaseAddress = new Uri("https://localhost:44313/api");
+            }) 
+            //Info on generated clients with Refit: https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-3.1#generated-clients-1
+            .AddTypedClient(c => Refit.RestService.For<ICrudemoApi>(c));
 
             //repositories
             services.AddScoped<IPersonRepository, PersonRepository>();
