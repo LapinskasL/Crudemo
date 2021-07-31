@@ -1,14 +1,23 @@
 ﻿using Crudemo.Business.Interfaces;
 using Crudemo.Business.Responses;
+using Crudemo.DataAccess.Interfaces;
 using Crudemo.Models;
+using Refit;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Crudemo.Business
 {
     public class PersonService : IPersonService
     {
+        private readonly IPersonRepository _personRepository = 
+            RestService.For<IPersonRepository>("https://localhost:44313/api");
+        public PersonService()
+        {
+                
+        }
         public PersonResponse Delete(int id, string concurrencyToken)
         {
             throw new NotImplementedException();
@@ -19,9 +28,10 @@ namespace Crudemo.Business
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Person> Get()
+        public async Task<IEnumerable<Person>> Get()
         {
-            throw new NotImplementedException();
+            IEnumerable<Person> models = await _personRepository.Get();
+            return models;
         }
 
         public Person Get(int id)

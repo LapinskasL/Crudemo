@@ -30,7 +30,7 @@ namespace Crudemo.WebUI
             services.AddControllersWithViews();
 
             //repositories
-            services.AddScoped<IPersonRepository, PersonRepository>();
+            //services.AddScoped<IPersonRepository, PersonRepository>();
 
             //services
             services.AddScoped<IPersonService, PersonService>();

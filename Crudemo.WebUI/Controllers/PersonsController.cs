@@ -1,4 +1,5 @@
-﻿using Crudemo.WebUI.Models;
+﻿using Crudemo.Business.Interfaces;
+using Crudemo.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,34 +10,23 @@ namespace Crudemo.WebUI.Controllers
 {
     public class PersonsController : Controller
     {
-        private List<PersonModel> GeneratePersons()
-        {
-            List<PersonModel> persons = new List<PersonModel>();
-            for (int i = 0; i < 30; i++)
-            {
-                persons.Add(new PersonModel
-                {
-                    Id = i + 1,
-                    FirstName = "First" + i.ToString(),
-                    LastName = "Last" + i.ToString(),
-                    PhoneNumber = "123456789" + i.ToString(),
-                    ConcurrencyToken = "",
-                    DateAdded = DateTime.Now
-                });
-            }
+        private readonly IPersonService _personService;
 
-            return persons;
+        public PersonsController(IPersonService personService)
+        {
+            _personService = personService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await _personService.Get();
             return View();
         }
 
         [HttpGet]
-        public JsonResult GetPersons()
+        public async Task<JsonResult> GetPersons()
         {
-            return Json(new { data = GeneratePersons() });
+            return Json(new { data = await _personService.Get() });
         }
 
         [HttpGet]

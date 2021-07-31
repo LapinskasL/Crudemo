@@ -3,6 +3,7 @@ using Crudemo.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Crudemo.Business.Interfaces
 {
@@ -11,7 +12,7 @@ namespace Crudemo.Business.Interfaces
         /// <summary>
         /// Returns IEnumerable of objects.
         /// </summary>
-        public IEnumerable<Person> Get();
+        public Task<IEnumerable<Person>> Get();
 
         /// <summary>
         /// Returns one object by Id.
