@@ -1,6 +1,7 @@
 ﻿using Crudemo.DataAccess.ApiClients;
 using Crudemo.DataAccess.Interfaces;
 using Crudemo.Models;
+using Microsoft.Extensions.Logging;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace Crudemo.DataAccess
     public class PersonRepository : IPersonRepository
     {
         private readonly ICrudemoApi _crudemoApi;
+        private readonly ILogger<PersonRepository> _logger;
 
-        public PersonRepository(ICrudemoApi crudemoApi)
+        public PersonRepository(ICrudemoApi crudemoApi, ILogger<PersonRepository> logger)
         {
             _crudemoApi = crudemoApi;
+            _logger = logger;
         }
 
         public async Task Delete(int id)
@@ -26,6 +29,7 @@ namespace Crudemo.DataAccess
         public async Task<IEnumerable<Person>> Get()
         {
             IEnumerable<Person> models = await _crudemoApi.Get();
+            
             return models;
         }
 
