@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,12 +25,13 @@ namespace Crudemo.DataAccess
         public async Task Delete(int id)
         {
             await _crudemoApi.Delete(id);
+            _logger.LogInformation("Person deleted.");
         }
 
         public async Task<IEnumerable<Person>> Get()
         {
             IEnumerable<Person> models = await _crudemoApi.Get();
-            
+            _logger.LogInformation("Retrieved {count} persons.", models.ToList().Count);
             return models;
         }
 
@@ -42,12 +44,14 @@ namespace Crudemo.DataAccess
         public async Task<Person> Insert(Person model)
         {
             Person insertedModel = await _crudemoApi.Insert(model);
+            _logger.LogInformation("Person inserted.");
             return insertedModel;
         }
 
         public async Task Update(Person model)
         {
-            await _crudemoApi.Update(model);
+           await _crudemoApi.Update(model);
+            _logger.LogInformation("Person updated.");
         }
     }
 }
