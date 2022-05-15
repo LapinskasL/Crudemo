@@ -13,25 +13,25 @@ namespace Crudemo.DataAccess.ApiClients
         /// Returns object by Id.
         /// </summary>
         [Get("/person/{id}")]
-        Task<Person> Get(int id);
+        Task<ApiResponse<Person>> Get(int id);
 
         /// <summary>
         /// Returns IEnumerable of object.
         /// </summary>
         [Get("/person")]
-        Task<IEnumerable<Person>> Get();
+        Task<ApiResponse<IEnumerable<Person>>> Get();
 
         /// <summary>
         /// Updates object.
         /// </summary>
         [Put("/person/{model.Id}")]
-        Task<Person> Update(Person model);
+        Task<ApiResponse<Person>> Update(Person model);
 
         /// <summary>
         /// Inserts object.
         /// </summary>
         [Post("/person")]
-        Task<Person> Insert([Body] Person model);
+        Task<ApiResponse<Person>> Insert([Body] Person model);
 
         /// <summary>
         /// Deletes object.

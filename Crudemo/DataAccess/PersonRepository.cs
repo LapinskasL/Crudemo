@@ -30,27 +30,27 @@ namespace Crudemo.DataAccess
 
         public async Task<IEnumerable<Person>> Get()
         {
-            IEnumerable<Person> models = await _crudemoApi.Get();
-            _logger.LogInformation("Retrieved {count} persons.", models.ToList().Count);
-            return models;
+            var response = await _crudemoApi.Get();
+            _logger.LogInformation("Retrieved {count} persons.", response.Content.ToList().Count);
+            return response.Content;
         }
 
         public async Task<Person> Get(int id)
         {
-            Person model = await _crudemoApi.Get(id);
-            return model;
+            var response = await _crudemoApi.Get(id);
+            return response.Content;
         }
 
         public async Task<Person> Insert(Person model)
         {
-            Person insertedModel = await _crudemoApi.Insert(model);
+            var response = await _crudemoApi.Insert(model);
             _logger.LogInformation("Person inserted.");
-            return insertedModel;
+            return response.Content;
         }
 
         public async Task Update(Person model)
         {
-           await _crudemoApi.Update(model);
+           var response = await _crudemoApi.Update(model);
             _logger.LogInformation("Person updated.");
         }
     }
